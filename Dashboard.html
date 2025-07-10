@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="topnav">
+    <a href="Home Page.html">Home</a>
+    <a href="Profile.html">Profile</a>
+    <a href="ContactUs.html">Contact Us</a>
+    <div class="topnav-right">
+      <a href="Login.html">Logout</a>
+    </div>
+  </div>
+
+  <div class="header">
+    <h1>Welcome to your Dashboard, {{username}}</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <h2>Your Activity</h2>
+      <ul>
+        <li><a href="#">Submit a Legal Query</a></li>
+        <li><a href="#">View Past Queries</a></li>
+        <li><a href="#">Book a Consultation</a></li>
+        <li><a href="#">Upcoming Appointments</a></li>
+      </ul>
+
+      <div class="role-section">
+        <!-- Placeholder for role-specific content -->
+        <p><strong>Role:</strong> {{role}}</p>
+        <div id="lawyerPanel" style="display: none;">
+          <h3>Lawyer Tools</h3>
+          <ul>
+            <li><a href="#">Review Escalated Queries</a></li>
+            <li><a href="#">Manage Appointments</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Example role toggle
+    const role = "{{role}}";
+    if (role === "lawyer") {
+      document.getElementById("lawyerPanel").style.display = "block";
+    }
+  </script>
+</body>
+</html>

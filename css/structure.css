@@ -1,0 +1,105 @@
+.header{
+    padding: 60px;
+    text-align: center;
+    background: blueviolet;
+    color: white;
+    text-decoration: underline;
+    border: 5px solid wheat;
+}
+
+.sidebar {
+    flex: 1;
+    width: 100px;
+    padding: 20px;
+    height: 100vh;
+    text-align: right;
+    background-color: black;
+    color: blueviolet;
+    position: relative;
+}
+
+.sidebar a {
+    display: block; /* Makes links appear in a vertical list */
+    padding: 10px;
+    text-decoration: none;
+    color: royalblue;
+}
+
+.sidebar a:hover {
+    background-color: black;
+    color: blueviolet;
+}
+
+.container {
+    background-color: black;
+    color: green;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border: 5px solid wheat;
+    background: linear-gradient(to right, rgb(255, 255, 255, 0.2), rgb(255, 255, 255, 0)); /* Adds glossy effect */
+    backdrop-filter: blur(10px); /* Softens the background for a glass-like sheen */
+    border-radius: 12px; /* Smooth rounded corners */
+    padding: 20px;
+    box-shadow: 0px 4px 10px; /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out;
+}
+
+.main-content {
+    flex: 3;
+    padding: 20px;
+    background-color: black;
+    color: green;
+}
+
+.second-content {
+    background-color: black;
+    color: green;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border: 5px solid wheat;
+    border-radius: 12px; /* Smooth rounded corners */
+    padding: 20px;
+    box-shadow: 0px 4px 10px; /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out;
+}
+
+.footer{
+    background-color: black;
+    color: green;
+}
+
+
+button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border: solid black;
+    border-radius: 8px; /* Rounded corners */
+    background: linear-gradient(to right, cyan, wheat); /* Gradient effect */
+    color: wheat;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05); /* Slight size increase on hover */
+    background: linear-gradient(to right, #0056b3, #0096c7); /* Darker gradient */
+}
+
+@media screen and (max-width:700px){
+    .content, .sidebar{
+        width: 100%;
+        float: none;
+    }
+}
+
+.textarea{
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    font-size: 1rem;
+}

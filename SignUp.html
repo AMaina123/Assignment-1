@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<script src="js/signup.js"></script>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="topnav">
+    <a href="Home Page.html">Home</a>
+    <a href="Dashboard.html">Dashboard</a>
+    <a href="ContactUs.html">Contact Us</a>
+    <div class="topnav-right">
+      <a href="SignUp.html">Sign Up</a>
+      <a href="Login.html">Login</a>
+    </div>  
+  </div>
+
+  <div class="header">
+    <h1>Welcome to LegalGuide</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <h2>Create Your Account</h2>
+
+      <form id="signupForm">
+        <!-- Role Selector -->
+        <label for="role">Sign up as:</label><br>
+        <select id="role" required>
+          <option value="">--Select Role--</option>
+          <option value="user">Ordinary User</option>
+          <option value="lawyer">Lawyer</option>
+        </select><br>
+
+        <!-- Personal Info -->
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" placeholder="Your name" required /><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" placeholder="Your password" required /><br>
+
+        <label for="email">Email Address:</label><br>
+        <input type="email" id="email" placeholder="Enter your email address" required /><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" placeholder="Enter your phone number" /><br>
+
+        <!-- (Optional) Lawyer-specific info -->
+        <div id="lawyerFields" style="display: none;">
+          <label for="barNumber">Bar Registration Number:</label><br>
+          <input type="text" id="barNumber" placeholder="Bar Registration Number" /><br>
+
+          <label for="certification">Upload Certification:</label><br>
+          <input type="file" id="certification" accept=".pdf,.jpg,.png" /><br>
+
+          <label for="cv">Upload CV:</label><br>
+          <input type="file" id="cv" accept=".pdf,.doc,.docx" /><br>
+
+          <label for="lawFirm">Law Firm:</label><br>
+          <input type="text" id="lawFirm" placeholder="Law Firm Name (optional)" /><br>
+        </div>
+
+        <!-- Submit -->
+        <input type="submit" value="Register" />
+        <input type="reset" value="Clear" />
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer (optional) -->
+  <div class="footer">
+    <img src="images/lawyer.png" width="200" height="300" alt="cartoon lawyer" />
+  </div>
+
+  <!-- Logic -->
+  <script>
+    // Toggle lawyer fields based on role
+    document.getElementById("role").addEventListener("change", function () {
+      document.getElementById("lawyerFields").style.display =
+        this.value === "lawyer" ? "block" : "none";
+    });
+
+    // Submit handler
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Collect field values
+      const payload = {
+        role: document.getElementById("role").value,
+        name: document.getElementById("name").value,
+        password: document.getElementById("password").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value
+      };
+
+      // Send JSON to backend
+      fetch("http://localhost:8080/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Signup failed");
+        return res.text();
+      })
+      .then(msg => {
+        alert("✅ " + msg);
+        // Optionally redirect: window.location.href = "Login.html";
+      })
+      .catch(err => {
+        alert("❌ Signup error: " + err.message);
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>

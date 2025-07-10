@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="topnav">
+    <a href="Home Page.html"> Home </a> 
+    <a href="Dashboard.html"> Dashboard</a> 
+    <a href="Profile.html"> My Profile</a> 
+    <a href="ContactUs.html"> Contact Us</a>
+    <div class="topnav-right">
+      <a href="SignUp.html">Sign Up</a>
+    </div>  
+  </div>
+
+  <div class="header">
+    <h1>Manage Your Profile</h1>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <p>
+        View and update your personal information below. LegalGuide ensures your details remain secure and up to date.
+      </p>
+
+      <div class="row">
+        <div class="content">
+          <form id="profileForm">
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" readonly><br>
+
+            <label for="phone">Phone:</label><br>
+            <input type="tel" id="phone" name="phone"><br>
+
+            <label for="role">Your Role:</label><br>
+            <input type="text" id="role" name="role" readonly><br>
+
+            <input type="submit" value="Update Profile" />
+            <input type="reset" value="Reset" />
+            <p id="message" class="error-text"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <a href="MyProject.html">My Project</a>
+      <a href="MyHobbies.html">My Hobbies</a>
+      <a href="AboutMe.html">About Me</a>
+      <a href="ContactUs.html">Contact Us</a>
+    </aside>
+  </div>
+
+  <div class="footer">
+    <img src="Images/lawyer.png" width="200" height="300" alt="cartoon lawyer" />
+  </div>
+
+  <script src="js/profile.js"></script>
+</body>
+</html>

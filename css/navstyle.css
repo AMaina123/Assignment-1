@@ -1,0 +1,29 @@
+.topnav {
+    background-color: blueviolet;
+    overflow: hidden;
+}
+.topnav a {
+    float: left;
+    display: block;
+    color: wheat;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+.topnav a:hover {
+    background-color: blueviolet;
+    color: black;
+}
+
+.topnav-right a{
+    float: right;
+    display: block;
+    color: wheat;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+.topnav-right a:hover{
+    background-color: blueviolet;
+    color:black
+}
