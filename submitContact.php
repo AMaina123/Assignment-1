@@ -1,5 +1,5 @@
 <?php
-include("includes/db.php");
+require "db.php";
 
 $comments = $_POST['comments'] ?? '';
 $subscribe = $_POST['subscribe'] ?? 'no';

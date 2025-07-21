@@ -1,9 +1,9 @@
 <?php
-// 🔐 Start session to ensure user is logged in
+// Start session to ensure user is logged in
 session_start();
 require "db.php"; // Your MySQLi connection via $conn
 
-// ✅ Redirect to login if not authenticated
+//  Redirect to login if not authenticated
 if (!isset($_SESSION['user_id'])) {
   header("Location: Login.php");
   exit;
@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id']; // Get current user ID from session
 
-// 🧠 Fetch user details using JOIN between users and roles
+//  Fetch user details using JOIN between users and roles
 $user_stmt = $conn->prepare("
   SELECT u.full_name, u.email, u.phone, r.role
   FROM users u
@@ -53,7 +53,7 @@ $query_stmt->close();
 </head>
 <body>
 
-<!-- 🧭 Navigation bar -->
+<!--  Navigation bar -->
 <div class="topnav">
   <a href="Homepage.php">Home</a>  
   <a href="Dashboard.php">Dashboard</a>  
@@ -65,7 +65,7 @@ $query_stmt->close();
   </div>
 </div>
 
-<!-- 📢 Page title -->
+<!--  Page title -->
 <div class="header">
   <h1>Manage Your Profile</h1>
 </div>
@@ -74,7 +74,7 @@ $query_stmt->close();
   <div class="main-content">
     <p>Update your personal information or review your past legal queries.</p>
 
-    <!-- 📝 User Profile Form -->
+    <!--  User Profile Form -->
     <div class="row">
       <div class="main-content">
         <form method="post" action="updateProfile.php">
@@ -96,7 +96,7 @@ $query_stmt->close();
       </div>
     </div>
 
-    <!-- 📜 User's Query History -->
+    <!--  User's Query History -->
      <div class="second-content">
     <div class="query-history">
       <h2>Your Previous Queries</h2>
@@ -117,7 +117,7 @@ $query_stmt->close();
   </div>
   </div>
 
-  <!-- 📂 Sidebar links -->
+  <!--  Sidebar links -->
   <aside class="sidebar">
     <a href="MyProject.php">My Project</a>
     <a href="MyHobbies.php">My Hobbies</a>
@@ -126,7 +126,7 @@ $query_stmt->close();
   </aside>
 </div>
 
-<!-- ⚖️ Footer branding -->
+<!--  Footer branding -->
 <div class="footer">
   <img src="Images/lawyer.png" width="200" height="300" alt="cartoon lawyer" />
 </div>

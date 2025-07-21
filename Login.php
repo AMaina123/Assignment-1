@@ -5,7 +5,7 @@ session_start();
 // Load MySQLi database connection
 require "db.php"; // Should define $conn as mysqli object
 
-// ⚙️ Handle form submission via POST
+//  Handle form submission via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Retrieve submitted credentials, or default to empty strings
   $email    = $_POST['email'] ?? '';
@@ -22,10 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt->execute();
   $result = $stmt->get_result();
 
-  // ✅ If user found, verify password
+  // If user found, verify password
   if ($user = $result->fetch_assoc()) {
     if (password_verify($password, $user['password'])) {
-      // 🌟 Login success — set session variables
+      // Login success — set session variables
       $_SESSION['user_id']    = $user['id'];
       $_SESSION['user_email'] = $user['email'];
       $_SESSION['username']   = $user['username'];
@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       header("Location: Dashboard.php");
       exit;
     } else {
-      // ❌ Password incorrect
+      // Password incorrect
       $error = "Incorrect email or password.";
     }
   } else {
-    // ❌ Email not found
+    //  Email not found
     $error = "Incorrect email or password.";
   }
 
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<!-- 🧭 Navigation bar -->
+<!--  Navigation bar -->
 <div class="topnav">
   <a href="Homepage.php">Home</a>
   <a href="ContactUs.php">Contact Us</a>
@@ -68,12 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </div>
 
-<!-- 🏷️ Page header -->
+<!--  Page header -->
 <div class="header">
   <h1>Login to LegalGuide</h1>
 </div>
 
-<!-- 🧾 Login form section -->
+<!--  Login form section -->
 <div class="row">
   <div class="main-content">
     <h2>Login</h2>
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p><a href="SignUp.php">Don't have an account? Sign Up</a></p>
       </form>
 
-      <!-- 👋 Greeting sidebar -->
+      <!--  Greeting sidebar -->
       <div class="sidebar">
         <h2>Welcome Back!</h2>
         <p>Legal insights, personalized dashboards, and secure consultations await you.</p>
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </div>
 
-<!-- 🔻 Footer -->
+<!--  Footer -->
 <div class="footer">
   <p>&copy; 2025 LegalGuide. All rights reserved.</p>
 </div>

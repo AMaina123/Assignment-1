@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("includes/db.php");
+require "db.php";
 
 $userId = $_SESSION['user_id'] ?? null;
 $name   = $_POST['name'] ?? '';

@@ -16,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     empty($full_name) || empty($email) || empty($phone) || empty($username) ||
     empty($password) || empty($confirm) || empty($role_id) || empty($gender_id)
   ) {
-    $message = "⚠️ Please fill in all fields.";
+    $message = "Please fill in all fields.";
   } elseif ($password !== $confirm) {
-    $message = "🔒 Passwords do not match.";
+    $message = "Passwords do not match.";
   } else {
     $hashed = password_hash($password, PASSWORD_DEFAULT);
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       header("Location: Dashboard.php");
       exit;
     } else {
-      $message = "❌ Error saving account: " . $stmt->error;
+      $message = " Error saving account: " . $stmt->error;
     }
 
     $stmt->close();

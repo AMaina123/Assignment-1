@@ -1,12 +1,12 @@
 <?php
 
-// 🔐 Redirect unauthenticated users to login
+// Redirect unauthenticated users to login
 if (!isset($_SESSION['user_id'])) {
   header("Location: Login.php");
   exit;
 }
 
-// 🔎 Extract session data
+// Extract session data
 $username = $_SESSION['username'] ?? 'User';
 $role     = $_SESSION['user_role'] ?? 'user'; // Roles: 'user', 'lawyer', 'admin'
 $role = strtolower($_SESSION['user_role'] ?? 'user');
@@ -19,7 +19,7 @@ $past_queries   = [];       // User query history
 $appointments   = [];       // Lawyer appointment list
 
 // ------------------------------------------------------------
-// ✉️ Handle Legal Query Submission and AI Response
+// Handle Legal Query Submission and AI Response
 // ------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
   $query_text = trim($_POST['query_text']);
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
   if (empty($query_text)) {
     $query_message = "⚠️ Please enter a legal question.";
   } else {
-    // 🧠 Check if user already submitted same query
+    // Check if user already submitted same query
     $check_stmt = $conn->prepare("SELECT COUNT(*) FROM queries WHERE user_id = ? AND query_text = ?");
     $check_stmt->bind_param("is", $_SESSION['user_id'], $query_text);
     $check_stmt->execute();
@@ -36,15 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
     $check_stmt->close();
 
     if ($count > 0) {
-      $query_message = "⚠️ You've already submitted that question.";
+      $query_message = "You've already submitted that question.";
     } else {
-      // ✅ Insert query into database
+      // Insert query into database
       $stmt = $conn->prepare("INSERT INTO queries (user_id, query_text) VALUES (?, ?)");
       $stmt->bind_param("is", $_SESSION['user_id'], $query_text);
       if ($stmt->execute()) {
         $query_id = $stmt->insert_id;
 
-        // 🔮 Simulate AI response locally using keyword-based logic
+        // Simulate AI response locally using keyword-based logic
         $keywords = [
           'land' => 'It looks like your query involves land matters. Kenyan land law includes considerations like title deeds, leasehold vs. freehold, and succession rights.',
           'tenant' => 'Your query involves tenancy. Under Kenyan law, tenant rights are governed by the Landlord and Tenant Act and may require formal notice for eviction.',
@@ -84,9 +84,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
         $save->close();
 
 $query_response = $simulated_response;
-        $query_message = "✅ Your query has been submitted successfully.";
+        $query_message = "Your query has been submitted successfully.";
       } else {
-        $query_message = "❌ Error: " . $stmt->error;
+        $query_message = "Error: " . $stmt->error;
       }
       $stmt->close();
     }
@@ -96,7 +96,7 @@ $query_response = $simulated_response;
       
 
 // ------------------------------------------------------------
-// 📚 Retrieve User's Past Queries
+// Retrieve User's Past Queries
 // ------------------------------------------------------------
 $query_stmt = $conn->prepare("
   SELECT id, query_text, response, submitted_at
@@ -114,7 +114,7 @@ while ($row = $result->fetch_assoc()) {
 $query_stmt->close();
 
 // ------------------------------------------------------------
-// 📅 Handle Consultation Booking (User/Admin)
+//  Handle Consultation Booking (User/Admin)
 // ------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_date'])) {
   $date       = $_POST['appointment_date'] ?? '';
@@ -128,9 +128,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_date'])) 
     ");
     $appt_stmt->bind_param("iiss", $_SESSION['user_id'], $lawyer_id, $date, $purpose);
     if ($appt_stmt->execute()) {
-      $appt_message = "✅ Consultation requested successfully.";
+      $appt_message = "Consultation requested successfully.";
     } else {
-      $appt_message = "❌ Appointment error: " . $appt_stmt->error;
+      $appt_message = "Appointment error: " . $appt_stmt->error;
     }
     $appt_stmt->close();
   }
