@@ -9,13 +9,13 @@
 <body>
     <div>
         <div class="topnav">
-        <a href="Home Page.html"> Home </a> 
-        <a href="Dashboard.html"> Dashboard</a> 
-        <a href="Profile.html"> My Profile</a> 
-        <a href="ContactUs.html"> Contact Us</a>
+        <a href="Homepage.php"> Home </a> 
+        <a href="Dashboard.php"> Dashboard</a> 
+        <a href="Profile.php"> My Profile</a> 
+        <a href="ContactUs.php"> Contact Us</a>
         <div class="topnav-right">
-        <a href="SignUp.html">Sign Up</a>
-        <a href="Login.html"> Login</a>
+        <a href="SignUp.php">Sign Up</a>
+        <a href="Login.php"> Login</a>
     </div>
     </div>
 
@@ -41,10 +41,10 @@
         
     
         <aside class="sidebar">
-            <a href="Dashboard.html"> Dashboard</a> <br> 
-            <a href="Profile.html"> My Profile</a> <br>
-            <a href="AboutMe.html"> About Me</a>  <br>
-            <a href="ContactUs.html"> Contact Us</a> <br>
+            <a href="Dashboard.php"> Dashboard</a> <br> 
+            <a href="Profile.php"> My Profile</a> <br>
+            <a href="AboutMe.php"> About Me</a>  <br>
+            <a href="ContactUs.php"> Contact Us</a> <br>
         </aside>
 </div>
 
