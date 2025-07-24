@@ -50,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
 
+
+
   // --- Fetch role name (only if not blocked yet) ---
   if (empty($message)) {
     $role_sql = $conn->prepare("SELECT role FROM roles WHERE roleId = ?");
