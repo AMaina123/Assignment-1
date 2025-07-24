@@ -2,16 +2,16 @@
 session_start();
 require "db.php";
 
-//  Capture and validate form data
-$fullName     = $_POST['full_name'] ?? '';
-$email        = $_POST['email'] ?? '';
-$phone        = $_POST['phone'] ?? '';
-$username     = $_POST['username'] ?? '';
-$password     = $_POST['password'] ?? '';
-$confirmPass  = $_POST['confirm_password'] ?? '';
-$genderId     = $_POST['gender_id'] ?? '';
-$roleId       = $_POST['role_Id'] ?? '';
-
+// Capture form inputs. ucwords auto uppercases the first string character, strtolower makes a string lowercase 
+  $full_name   = ucwords(strtolower($_POST['full_name']?? ''));
+  $email       = ucwords(strtolower($_POST['email'] ?? ''));
+  $phone       = ucwords(strotolower($_POST['phone'] ?? ''));
+  $username    = ucwords(strotolower($_POST['username'] ?? ''));
+  $password    = ucwords(strotolower($_POST['password'] ?? ''));
+  $confirm     = ucwords(strotolower($_POST['confirm_password'] ?? ''));
+  $role_id     = ucwords(strotolower($_POST['role_id'] ?? ''));
+  $gender_id   = ucwords(strotolower($_POST['gender_id'] ?? ''));
+  
 // 🔐 Enforce password complexity
 if (
   strlen($password) < 8 ||
