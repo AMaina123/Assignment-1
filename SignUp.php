@@ -3,18 +3,18 @@ require "db.php";
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // --- Capture form inputs ---
-  $full_name   = $_POST['full_name'] ?? '';
-  $email       = $_POST['email'] ?? '';
-  $phone       = $_POST['phone'] ?? '';
-  $username    = $_POST['username'] ?? '';
-  $password    = $_POST['password'] ?? '';
-  $confirm     = $_POST['confirm_password'] ?? '';
-  $role_id     = $_POST['role_id'] ?? '';
-  $gender_id   = $_POST['gender_id'] ?? '';
-  $certificate = $_POST['certificate'] ?? '';
-  $expertise   = $_POST['expertise'] ?? '';
-  $location    = $_POST['location'] ?? '';
+  // --- Capture form inputs. ucwords auto uppercases the first string character, strtolower makes a string lowercase ---
+  $full_name   = ucwords(strtolower($_POST['full_name']?? ''));
+  $email       = ucwords(strtolower($_POST['email'] ?? ''));
+  $phone       = ucwords(strotolower($_POST['phone'] ?? ''));
+  $username    = ucwords(strotolower($_POST['username'] ?? ''));
+  $password    = ucwords(strotolower($_POST['password'] ?? ''));
+  $confirm     = ucwords(strotolower($_POST['confirm_password'] ?? ''));
+  $role_id     = ucwords(strotolower($_POST['role_id'] ?? ''));
+  $gender_id   = ucwords(strotolower($_POST['gender_id'] ?? ''));
+  $certificate = ucwords(strotolower($_POST['certificate'] ?? ''));
+  $expertise   = ucwords(strotolower($_POST['expertise'] ?? ''));
+  $location    = ucwords(strotolower($_POST['location'] ?? ''));
   $message     = '';
 
   // --- Validations ---
