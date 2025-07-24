@@ -12,6 +12,16 @@ $confirmPass  = $_POST['confirm_password'] ?? '';
 $genderId     = $_POST['gender_id'] ?? '';
 $roleId       = $_POST['role_Id'] ?? '';
 
+// 🔐 Enforce password complexity
+if (
+  strlen($password) < 8 ||
+  !preg_match('/[A-Z]/', $password) ||        // uppercase
+  !preg_match('/[a-z]/', $password) ||        // lowercase
+  !preg_match('/[0-9]/', $password)           // digit
+) {
+  die("Password must be at least 8 characters and include uppercase, lowercase, and a number.");
+}
+
 //  Password match check
 if ($password !== $confirmPass) {
     die("Passwords do not match.");
@@ -21,12 +31,12 @@ if ($password !== $confirmPass) {
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 //  Insert user into DB
-$stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, username, password, gender_id, role_Id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO users (full_name, email, phone, username, password, gender_id, role_Id) VALUES (?, ?, ?, ?, ?, ?, ?)");
 $stmt->execute([$fullName, $email, $phone, $username, $hashedPassword, $genderId, $roleId]);
 
 //  Fetch the new user and their role name
-$userId = $pdo->lastInsertId();
-$stmt = $pdo->prepare("SELECT r.role FROM users u JOIN roles r ON u.role_id = r.roleId WHERE u.id = ?");
+$userId = $conn->lastInsertId();
+$stmt = $conn->prepare("SELECT r.role FROM users u JOIN roles r ON u.role_id = r.roleId WHERE u.id = ?");
 $stmt->execute([$userId]);
 $role = $stmt->fetchColumn();
 

@@ -1,4 +1,4 @@
-<!-- 🔐 Admin Controls -->
+<!--  Admin Controls -->
 <div class="role-section">
   <h3>Admin Controls</h3>
   <ul>

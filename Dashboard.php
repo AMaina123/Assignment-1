@@ -16,13 +16,18 @@ require "dashconfig.php";    // Universal dashboard logic
 <body>
 
   <!--  Navigation Bar -->
-  <div class="topnav">
+  <div class="topnav a">
     <a href="Homepage.php">Home</a>
     <a href="Dashboard.php">Dashboard</a>
-    <a href="Profile.php">My Profile</a>
+    <a href="ContactUs.php">Contact Us</a>
     <div class="topnav-right">
-      <a href="SignUp.php">Sign Up</a>
-      <a href="Login.php">Login</a>
+     <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="Profile.php">My Profile</a>
+            <a href="Homepage.php?logout=true" style="color: #dc3545;">Logout</a>
+            <?php else: ?>
+                <a href="SignUp.php">Sign Up</a>
+                <a href="Login.php">Login</a>
+                <?php endif; ?>
     </div>
   </div> 
 
@@ -35,8 +40,6 @@ require "dashconfig.php";    // Universal dashboard logic
   <div class="container">
     <div class="main-content">
       <h2>Your Activity</h2>
-
-      <p style="color: yellow;">Detected role: <strong><?php echo $role; ?></strong></p>
 
       <!-- Render Section Based on Role -->
       <?php

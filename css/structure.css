@@ -1,130 +1,100 @@
+/* StructureStyle.css */
+/* This file contains the CSS styles for the structure of the webpage */
 body {
-    font-family: "Segoe UI", sans-serif;
-    background: indigo;
     margin: 0;
-}
-
-/* 🌟 Page Header */
-.header {
-    background: black;
-    color: wheat;
-    padding: 30px;
-    text-align: center;
-    border: 2px solid wheat;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.1);
-    margin: 20px;
-}
-
-/* 📚 Sidebar Styles */
-.sidebar {
-    width: 250px;           /* Custom width, not 100px or 100% */
-    flex-shrink: 0;         /* Don't collapse */
-    height: 100vh;
-    padding: 20px;
-    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: black;
-    color: blueviolet;
-    border: 2px solid wheat;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(255,255,255,0.1);
-    position: relative;
+}
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+    background: #92b3cc;
+    color: white;
+}
+
+.main-content {
+    background-color: white;
+    padding: 20px;
+    flex: 1;
+}
+
+.sidebar {
+  position: margin-right;
+  top: 0;
+  right: 0;
+  width: 300px;               /* Adjust as needed */
+  height: 100vh;              /* Full vertical height */
+  background-color: #f1f1f1;
+  padding: 20px;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1); /* Optional for depth */
+  overflow-y: auto;           /* Enables scrolling if content overflows */
+  z-index: 1000;              /* Keeps it on top */
 }
 
 .sidebar a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: wheat;
+  display: block;
+  padding: 10px 15px;
+  margin-left: 5px;
+  color: #495057;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 .sidebar a:hover {
-    background-color: black;
-    color: blueviolet;
+  background-color: #e9ecef;
+  color: #000000;
 }
 
-/* 📦 Container Block with Glass Effect */
-.container {
-    display: flex;
-    flex-direction: row; /* Content first, sidebar second (right side) */
-    justify-content: space-between;
-    align-items: flex-start;
-    background: black;
-    gap: 40px;
-    backdrop-filter: blur(8px);
-    border: 5px solid wheat;
-    border-radius: 12px;
-    padding: 30px;
-    margin: 30px auto;
-    width: 90%;
-    box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+
+.main-content, .sidebar p {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
 }
 
-/* 📄 Main Content Area */
-.main-content {
-    flex: 1;
-    min-width: 0;
-    padding: 20px;
-    background-color: black;
-    color: wheat;
-}
-
-/* 📄 Secondary Content */
-.second-content {
-    background-color: black;
-    color: wheat;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    border: 5px solid wheat;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0px 4px 10px;
-    transition: all 0.3s ease-in-out;
-}
-
-/* 📎 Footer */
-.footer {
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    flex-wrap: wrap;
-    color: wheat;
-}
-
-/* 🟡 Buttons */
-button {
-    margin-top: 15px;
-    padding: 12px 20px;
-    border: solid black;
-    border-radius: 8px;
-    background: linear-gradient(to right, cyan, wheat);
-    color: wheat;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-button:hover {
-    transform: scale(1.05);
-    background: linear-gradient(to right, #0056b3, #0096c7);
-}
-
-/* Responsive Fix for Small Screens */
 @media screen and (max-width: 700px) {
-    .content, .sidebar {
+    .content, .sidebar, img {
         width: 100%;
         float: none;
     }
 }
 
-/* Styled Textareas */
-.textarea {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    font-size: 1rem;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1; /* expands to fill available space between header and footer */
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  flex-direction: row;
+}
+  
+.second-content {
+  display: flex;
+  gap: 20px;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-top: 30px;
+}
+
+.footer {
+  background-color: #92b3d4;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #dee2e6;
+  color: #6c757d;
 }

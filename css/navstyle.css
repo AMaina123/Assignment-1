@@ -1,43 +1,42 @@
-/* 🔝 Top Navigation Bar */
+/* Header */
+.header {
+  background-color: #f8f9fa;
+  color: #212529;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+
 .topnav {
-    background-color: black;
-    overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  padding: 12px 24px;
+  border-bottom: 1px solid #dee2e6;
+  font-family: Inter, Arial, sans-serif;
 }
 
-/* 🌐 Main Nav Links */
 .topnav a {
-    float: left;
-    display: block;
-    color: wheat;
-    text-align: center;
-    padding: 14px 16px;
+  color: white;
+  text-decoration: none;  
+  align-items: start;
+  margin-right: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
 }
 
-/* 🎯 Hover Effect for Left-Aligned Links */
 .topnav a:hover {
-    background-color: blueviolet;
-    color: black;
+  color: #007bff;
 }
 
-/* 🔄 Right Side Navigation Links */
-.topnav-right a {
-    float: right;
-    display: block;
-    color: wheat;
-    text-align: center;
-    padding: 14px 16px;
-}
-
-/* ✨ Hover Effect for Right Side */
-.topnav-right a:hover {
-    background-color: blueviolet;
-    color: black;
-}
-
-#roleBanner {
-    float: right;
-    display: block;
-    color: wheat;
-    padding: 14px 16px;
-    font-weight: bold;
+.topnav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
 }
