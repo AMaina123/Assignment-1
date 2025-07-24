@@ -1,24 +1,24 @@
 <?php
 require "db.php";
 
-// 🔐 Redirect unauthenticated users to login
+// Redirect unauthenticated users to login
 if (!isset($_SESSION['user_id'])) {
   header("Location: Login.php");
   exit;
 }
 
-// 🔓 Logout functionality
+// Logout functionality
 if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
   session_destroy();
   header("Location: Login.php");
   exit;
 }
 
-// 👤 Session Details
+// Session Details
 $username = $_SESSION['username'] ?? 'User';
 $role     = strtolower($_SESSION['user_role'] ?? 'user'); // 'user', 'lawyer', 'admin'
 
-// 🧭 Initialize
+// Initialize
 $query_message  = '';
 $query_response = '';
 $query_id       = null;
@@ -28,13 +28,13 @@ $escalated_queries = [];
 $appt_message   = '';
 
 // ------------------------------------------------------------
-// 🧠 Handle Legal Query Submission
+// Handle Legal Query Submission
 // ------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
   $query_text = trim($_POST['query_text']);
 
   if (empty($query_text)) {
-    $query_message = "⚠️ Please enter a legal question.";
+    $query_message = "Please enter a legal question.";
   } else {
     // Check for duplicate query
     $check_stmt = $conn->prepare("SELECT COUNT(*) FROM queries WHERE user_id = ? AND query_text = ?");
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
       if ($stmt->execute()) {
         $query_id = $stmt->insert_id;
 
-        // 🧠 Simulated AI Response
+        // Simulated AI Response
         $keywords = [
           'land' => 'Kenyan land law covers title deeds, leasehold/freehold, and succession rights.',
           'tenant' => 'Tenancy rights fall under the Landlord and Tenant Act.',
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
 }
 
 // ------------------------------------------------------------
-// 📅 Retrieve Upcoming Appointments for User
+//  Retrieve Upcoming Appointments for User
 // ------------------------------------------------------------
 $user_appts = [];
 $appt_stmt = $conn->prepare("
@@ -122,7 +122,7 @@ while ($row = $user_appts_result->fetch_assoc()) {
 $appt_stmt->close();
 
 // ------------------------------------------------------------
-// 🕘 Booking Form Submission (User/Admin)
+// Booking Form Submission (User/Admin)
 // ------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_date'])) {
   $date      = $_POST['appointment_date'] ?? '';
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_date'])) 
 }
 
 // ------------------------------------------------------------
-// 📥 Retrieve Past Queries
+// Retrieve Past Queries
 // ------------------------------------------------------------
 $query_stmt = $conn->prepare("
   SELECT id, query_text, response, submitted_at
@@ -167,7 +167,7 @@ while ($row = $query_result->fetch_assoc()) {
 $query_stmt->close();
 
 // ------------------------------------------------------------
-// 🔍 Load Consultations Assigned to Logged-in Lawyer
+// Load Consultations Assigned to Logged-in Lawyer
 // ------------------------------------------------------------
 if ($role === 'lawyer') {
   $lawyer_appts = $conn->prepare("
@@ -187,7 +187,7 @@ if ($role === 'lawyer') {
 }
 
 // ------------------------------------------------------------
-// 🧭 Load Escalated Queries (Lawyer Only)
+// Load Escalated Queries (Lawyer Only)
 // ------------------------------------------------------------
 if ($role === 'lawyer') {
   $eq_stmt = $conn->prepare("
