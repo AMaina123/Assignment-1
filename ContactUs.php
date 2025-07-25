@@ -1,15 +1,15 @@
 <?php
 session_start();
-require 'db.php'; // ✅ Ensure the DB connection is established
+require 'db.php'; // Ensure the DB connection is established
 
-// 🔐 Handle logout requests
+//  Handle logout requests
 if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
   session_destroy();
   header("Location: Login.php");
   exit;
 }
 
-// 📨 Handle feedback submission
+//  Handle feedback submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $name = $conn->real_escape_string($_POST['full_name']);
   $email = $conn->real_escape_string($_POST['email']);
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 
-<!-- 🌐 Navigation -->
+<!--  Navigation -->
 <div class="topnav">
   <a href="Homepage.php">Home</a>
   <a href="Dashboard.php">Dashboard</a>
@@ -56,12 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </div>
 </div>
 
-<!-- 🏷️ Header -->
+<!--  Header -->
 <div class="header">
   <h1>Contact Us</h1>
 </div>
 
-<!-- 🧾 Main Contact Section -->
+<!-- Main Contact Section -->
 <div class="container">
   <div class="main-content">
     <p>
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       Phone: 0293023487<br>
     </div>
 
-    <!-- 📤 Feedback Form -->
+    <!-- Feedback Form -->
     <div class="second-content">
       <?php if (isset($feedbackMsg)) echo $feedbackMsg; ?>
       <form method="POST" action="ContactUs.php" class="feedback-form">
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label for="message">Message:</label><br>
         <textarea name="message" rows="5" placeholder="Enter your comments" required></textarea><br>
 
-        <!-- 📰 Newsletter Subscription -->
+        <!-- Newsletter Subscription -->
         <label>Newsletter Subscription:</label><br>
         <input type="radio" name="subscribe" value="yes" required /> Yeah, why not?<br>
         <input type="radio" name="subscribe" value="no" /> Na, no thanks.<br><br>
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </div>
 </div>
 
-<!-- 📬 Footer -->
+<!--  Footer -->
 <div class="footer">
   <p>&copy; 2025 LegalGuide. All rights reserved.</p>
 </div>
