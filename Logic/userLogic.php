@@ -1,6 +1,7 @@
 <!--  Submit Legal Query -->
 <section class="second-content">
-  <h2>Submit a Legal Query</h2> <br>
+  <h2>Submit a Legal Query</h2> 
+  <br>
   <form method="post" action="">
     <textarea name="query_text" rows="6" placeholder="Describe your legal issue clearly..." required></textarea>
     <br><input type="submit" value="Submit Query" />
@@ -25,6 +26,7 @@
 <!--  Past Legal Queries -->
 <section class="second-content">
   <h2>Your Previous Queries</h2>
+  <br>
   <?php if (!empty($past_queries)): ?>
     <ul class="query-list">
       <?php foreach ($past_queries as $q): ?>
@@ -54,12 +56,14 @@
 <section class="second-content">
   <h2>Book a Legal Consultation</h2> <br>
   <p>Choose LSK-verified lawyers by location and expertise.</p>
+  <br>
   <a href="bookconsultation.php" class="btn">Get Started</a>
 </section>
 
 <!--  Scheduled Consultations -->
 <section class="second-content">
-  <h2>Your Scheduled Consultations</h2> <br>
+  <h2>Your Scheduled Consultations</h2> 
+  <br>
   <?php if (!empty($user_appts)): ?>
   <table class="consultation-table">
     <thead>
