@@ -75,12 +75,12 @@ $lawyers = $result->fetch_all(MYSQLI_ASSOC);
       <div class="card">
         <h2>Registered Lawyers & Profiles</h2>
 
-        <!-- 📄 PDF Report Button -->
+        <!--  PDF Report Button -->
         <form method="post" action="generateReport.php" target="_blank" style="margin-bottom: 15px;">
           <button type="submit" class="btn btn-sm btn-secondary">Download Lawyer PDF Report</button>
         </form>
 
-        <!-- 📊 Lawyer Table -->
+        <!--  Lawyer Table -->
         <table class="table table-striped">
           <thead>
             <tr>
@@ -95,13 +95,13 @@ $lawyers = $result->fetch_all(MYSQLI_ASSOC);
               <th>Doc Type</th>
               <th>Doc Upload</th>
               <th>Consultations</th>
-              <th>Account Created</th> <!-- ✅ New Column Added -->
+              <th>Account Created</th> <!-- New Column Added -->
             </tr>
           </thead>
           <tbody>
             <?php foreach ($lawyers as $lawyer): ?>
             <tr>
-              <!-- 🧑‍⚖️ Lawyer Details -->
+              <!-- Lawyer Details -->
               <td><?= htmlspecialchars($lawyer['full_name']) ?></td>
               <td><?= htmlspecialchars($lawyer['email']) ?></td>
               <td><?= htmlspecialchars($lawyer['experience']) ?></td>
@@ -110,16 +110,16 @@ $lawyers = $result->fetch_all(MYSQLI_ASSOC);
               <td><?= nl2br(htmlspecialchars($lawyer['expertise'])) ?></td>
               <td><?= nl2br(htmlspecialchars($lawyer['bio'])) ?></td>
 
-              <!-- 📄 Document Details -->
+              <!--  Document Details -->
               <td><?= htmlspecialchars($lawyer['certificate_number']) ?></td>
               <td><?= htmlspecialchars($lawyer['document_type']) ?></td>
               <td><?= date("Y-m-d", strtotime($lawyer['uploaded_at'])) ?></td>
 
-              <!-- 🗓️ Consultations Count -->
+              <!--  Consultations Count -->
               <td><?= $lawyer['total_consultations'] ?></td>
 
-              <!-- 🕰️ Account Creation Date -->
-              <td><?= date("Y-m-d", strtotime($lawyer['user_created_at'])) ?></td> <!-- ✅ Displaying user.created_at -->
+              <!--  Account Creation Date -->
+              <td><?= date("Y-m-d", strtotime($lawyer['user_created_at'])) ?></td> <!--  Displaying user.created_at -->
             </tr>
             <?php endforeach; ?>
           </tbody>
@@ -129,7 +129,7 @@ $lawyers = $result->fetch_all(MYSQLI_ASSOC);
     </div>
   </div>
 
-  <!-- 📬 Footer Section -->
+  <!--  Footer Section -->
   <div class="footer">
     <p>&copy; 2025 LegalGuide. All rights reserved.</p>
     <p>Need help? <a href="mailto:support@legalguide.com">support@legalguide.com</a></p>

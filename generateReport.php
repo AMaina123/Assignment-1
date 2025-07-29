@@ -1,6 +1,6 @@
 <?php
-require_once('tcpdf/tcpdf.php');
-include 'db.php';
+require('tcpdf/tcpdf.php');
+require 'db.php';
 
 //  Fetch role counts
 $query = "
@@ -26,7 +26,7 @@ while ($row = $result->fetch_assoc()) {
 $reportContent .= "<tr><td><strong>Total</strong></td><td><strong>$total</strong></td></tr>";
 $reportContent .= "</table>";
 
-// 📄 Init TCPDF
+// Init TCPDF
 $pdf = new TCPDF();
 $pdf->AddPage();
 $pdf->SetFont('helvetica', '', 12);

@@ -26,38 +26,59 @@
 <!--  Past Legal Queries -->
 <section class="second-content">
   <h2>Your Previous Queries</h2>
-  <br>
+  <div class="second-content">
   <?php if (!empty($past_queries)): ?>
-    <ul class="query-list">
-      <?php foreach ($past_queries as $q): ?>
-        <li>
-          <strong>Date:</strong> <?php echo date("M d, Y", strtotime($q['submitted_at'])); ?><br>
-          <strong>Query:</strong> <em><?php echo htmlspecialchars($q['query_text']); ?></em><br>
-          <?php if (!empty($q['response'])): ?>
-            <strong>Response:</strong>
-            <p><?php echo htmlspecialchars($q['response']); ?></p>
-          <?php else: ?>
-            <strong>Status:</strong> Pending response<br>
-            <form method="post" action="escalateQuery.php" class="inline-form">
-              <input type="hidden" name="query_id" value="<?php echo $q['id']; ?>" />
-              <button type="submit">Escalate</button>
-            </form>
-          <?php endif; ?>
-        </li>
-      <?php endforeach; ?>
-    </ul>
+    <table class="consultation-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Query</th>
+          <th>Response</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($past_queries as $q): ?>
+          <tr>
+            <td><?php echo date("M d, Y", strtotime($q['submitted_at'])); ?></td>
+            <td><?php echo htmlspecialchars($q['query_text']); ?></td>
+            <td>
+              <?php if (!empty($q['response'])): ?>
+                <?php echo htmlspecialchars($q['response']); ?>
+              <?php else: ?>
+                <em>Pending response</em>
+              <?php endif; ?>
+            </td>
+            <td>
+              <?php if (empty($q['response'])): ?>
+                <form method="post" action="escalateQuery.php" class="inline-form">
+                  <input type="hidden" name="query_id" value="<?php echo $q['id']; ?>" />
+                  <button type="submit">Escalate</button>
+                </form>
+              <?php else: ?>
+                <span style="color: green;">Resolved</span>
+              <?php endif; ?>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
   <?php else: ?>
     <br>
     <p>No legal queries submitted yet.</p>
   <?php endif; ?>
+  </div>
 </section>
+  
 
 <!-- Consultation Access -->
 <section class="second-content">
-  <h2>Book a Legal Consultation</h2> <br>
+  <h2>Book a Legal Consultation</h2>
+  <div class="second-content"> 
   <p>Choose LSK-verified lawyers by location and expertise.</p>
   <br>
   <a href="bookconsultation.php" class="btn">Get Started</a>
+  </div>
 </section>
 
 <!--  Scheduled Consultations -->
