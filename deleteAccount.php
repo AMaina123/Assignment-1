@@ -10,10 +10,9 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Delete user-related data first (optional but recommended)
+// Delete user-related data first
 $conn->query("DELETE FROM queries WHERE user_id = $user_id");
 $conn->query("DELETE FROM appointments WHERE user_id = $user_id");
-// If user is a lawyer, you might also delete: lawyer_profiles, etc.
 
 // Delete user from users table
 $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");

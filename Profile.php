@@ -2,7 +2,7 @@
 <?php
 // Session Control & Authentication
 session_start();
-require "db.php"; //  Initializes MySQLi connection via $conn
+require "db.php"; 
 
 //  Redirect to login if user is not authenticated
 if (!isset($_SESSION['user_id'])) {
@@ -17,11 +17,10 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
   exit;
 }
 
-$userId = $_SESSION['user_id']; // 👤 Get current user ID from session
+$userId = $_SESSION['user_id']; // Get current user ID from session
 
-// ----------------------------------------------------
-//  1. Fetch Logged-In User’s Profile Info
-// ----------------------------------------------------
+
+//  Fetch Logged-In User’s Profile Info
 $user_stmt = $conn->prepare("
   SELECT u.full_name, u.email, u.phone, r.role
   FROM users u
@@ -35,9 +34,7 @@ $user = $user_result->fetch_assoc(); //  Pulls user profile record
 $user_stmt->close();
 
 
-// ----------------------------------------------------
-//  2. Update Profile (Full Name & Phone via POST)
-// ----------------------------------------------------
+//  Update Profile (Full Name & Phone via POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updatedName  = trim($_POST['name'] ?? '');
 $updatedPhone = trim($_POST['phone'] ?? '');
@@ -63,9 +60,9 @@ if ($userId && $updatedName) {
 }
 } 
 
-// ----------------------------------------------------
-//  3. Fetch User's Submitted Legal Queries
-// ----------------------------------------------------
+
+//   Fetch User's Submitted Legal Queries
+
 $query_stmt = $conn->prepare("
   SELECT query_text, response, submitted_at
   FROM queries

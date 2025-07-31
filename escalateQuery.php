@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lawyer_id'])) {
 </head>
 <body>
 
-<!-- 🔝 Navigation Bar -->
+<!--  Navigation Bar -->
 <div class="topnav">
   <a href="Homepage.php">Home</a>
   <a href="Dashboard.php">Dashboard</a>
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lawyer_id'])) {
   </div>
 </div>
 
-<!-- 🏷️ Page Header -->
+<!--  Page Header -->
 <div class="header">
   <h1>Escalate Legal Query</h1>
 </div>
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lawyer_id'])) {
   <div class="main-content">
     <p>Select filters and submit your legal query for professional guidance.</p>
 
-    <!-- 🔍 Filtering Form -->
+    <!--  Filtering Form -->
     <form method="POST" action="escalateQuery.php" class="second-content">
       <label for="location">Location:</label>
       <select name="location" onchange="this.form.submit()">
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lawyer_id'])) {
       </select>
     </form>
 
-    <!-- 📝 Escalation Form -->
+    <!-- Escalation Form -->
     <form method="POST" action="escalateQuery.php" class="second-content">
       <?php if (!empty($escalation_message)): ?>
         <p style="color: green; text-align: center;"><?php echo $escalation_message; ?></p>
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lawyer_id'])) {
     </form>
   </div>
 
-  <!-- 📌 Sidebar -->
+  <!-- Sidebar -->
   <aside class="sidebar">
     <a href="Dashboard.php">Dashboard</a>
     <a href="MyHobbies.php">My Hobbies</a>
@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lawyer_id'])) {
   </aside>
 </div>
 
-<!-- 📎 Footer -->
+<!-- Footer -->
 <div class="footer">
   <p>&copy; 2025 LegalGuide. All rights reserved.</p>
   <p>Need help? <a href="mailto:support@legalguide.com">support@legalguide.com</a></p>

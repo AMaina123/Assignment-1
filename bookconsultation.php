@@ -1,20 +1,20 @@
 <?php
-// -------------------------------
-//  🧠 Session & Database Setup
-// -------------------------------
+
+//   Session & Database Setup
+
 session_start();
 require "db.php";
 
-// 🔌 Connect to database
+// Connect to database
 $conn = new mysqli("localhost", "root", "Menerator.1", "legalguide2");
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
 $booking_message = '';
 $userId = $_SESSION['user_id'] ?? null;
 
-// -------------------------------
-// 🗂 Handle Consultation Booking Form
-// -------------------------------
+
+//  Handle Consultation Booking Form
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lawyer_id'])) {
     $date      = $_POST['date'] ?? '';
     $time      = $_POST['time'] ?? '';
@@ -38,9 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lawyer_id'])) {
     }
 }
 
-// -------------------------------
-// 🧭 Handle Filtering
-// -------------------------------
+
+//  Handle Filtering
+
 $location  = $_POST['location'] ?? '';
 $expertise = $_POST['expertise'] ?? '';
 
@@ -86,7 +86,7 @@ $stmt->close();
 </head>
 <body>
 
-<!-- 🔝 Navigation Bar -->
+<!--  Navigation Bar -->
 <div class="topnav">
   <a href="Homepage.php">Home</a>
   <a href="Dashboard.php">Dashboard</a>
@@ -103,7 +103,7 @@ $stmt->close();
   </div>
 </div>
 
-<!-- 🏷️ Page Header -->
+<!--  Page Header -->
 <div class="header">
   <h1>Book a Legal Consultation</h1>
 </div>
@@ -113,7 +113,7 @@ $stmt->close();
   <div class="main-content">
     <p>Select filters and request an appointment with a qualified advocate.</p>
 
-    <!-- 🔍 Filtering Form -->
+    <!--  Filtering Form -->
     <form method="POST" action="bookconsultation.php" class="second-content">
       <label for="location">Location:</label>
       <select name="location" onchange="this.form.submit()">

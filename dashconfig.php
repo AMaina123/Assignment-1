@@ -16,7 +16,7 @@ if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
 
 // Session Details
 $username = $_SESSION['username'] ?? 'User';
-$role     = strtolower($_SESSION['user_role'] ?? 'user'); // 'user', 'lawyer', 'admin'
+$role     = strtolower($_SESSION['user_role'] ?? 'user'); 
 
 // Initialize
 $query_message  = '';
@@ -27,15 +27,14 @@ $appointments   = [];
 $escalated_queries = [];
 $appt_message   = '';
 
-// ------------------------------------------------------------
 // Handle Legal Query Submission
-// ------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
   $query_text = trim($_POST['query_text']);
 
   if (empty($query_text)) {
     $query_message = "Please enter a legal question.";
   } else {
+
     // Check for duplicate query
     $check_stmt = $conn->prepare("SELECT COUNT(*) FROM queries WHERE user_id = ? AND query_text = ?");
     $check_stmt->bind_param("is", $_SESSION['user_id'], $query_text);
@@ -47,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
     if ($count > 0) {
       $query_message = "You've already submitted that question.";
     } else {
+
       // Insert query
       $stmt = $conn->prepare("INSERT INTO queries (user_id, query_text) VALUES (?, ?)");
       $stmt->bind_param("is", $_SESSION['user_id'], $query_text);
@@ -102,9 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query_text'])) {
   }
 }
 
-// ------------------------------------------------------------
 //  Retrieve Upcoming Appointments for User
-// ------------------------------------------------------------
 $user_appts = [];
 $appt_stmt = $conn->prepare("
   SELECT a.appointment_date, a.appointment_time, a.purpose, u.full_name AS lawyer_name
@@ -121,9 +119,8 @@ while ($row = $user_appts_result->fetch_assoc()) {
 }
 $appt_stmt->close();
 
-// ------------------------------------------------------------
+
 // Booking Form Submission (User/Admin)
-// ------------------------------------------------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_date'])) {
   $date      = $_POST['appointment_date'] ?? '';
   $time      = $_POST['appointment_time'] ?? '';
@@ -148,9 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['appointment_date'])) 
   }
 }
 
-// ------------------------------------------------------------
 // Retrieve Past Queries
-// ------------------------------------------------------------
 $query_stmt = $conn->prepare("
   SELECT id, query_text, response, submitted_at
   FROM queries
@@ -166,9 +161,9 @@ while ($row = $query_result->fetch_assoc()) {
 }
 $query_stmt->close();
 
-// ------------------------------------------------------------
+
 // Load Consultations Assigned to Logged-in Lawyer
-// ------------------------------------------------------------
+
 if ($role === 'lawyer') {
   $lawyer_appts = $conn->prepare("
     SELECT a.id, u.full_name, a.appointment_date, a.appointment_time, a.purpose, a.status
@@ -186,9 +181,8 @@ if ($role === 'lawyer') {
   $lawyer_appts->close();
 }
 
-// ------------------------------------------------------------
+
 // Load Escalated Queries (Lawyer Only)
-// ------------------------------------------------------------
 if ($role === 'lawyer') {
   $eq_stmt = $conn->prepare("
     SELECT q.id, q.query_text, u.full_name, q.submitted_at

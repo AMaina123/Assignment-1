@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user = $result->fetch_assoc()) {
       if (password_verify($password, $user['password'])) {
+        
         // Successful login
         $_SESSION['user_id']    = $user['id'];
         $_SESSION['user_email'] = $user['email'];

@@ -2,6 +2,7 @@
 session_start();
 require "db.php";
 
+//Allows lawyers to finalize appointments
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['appointment_id'])) {
   $id = intval($_POST['appointment_id']);
   $stmt = $conn->prepare("UPDATE appointments SET status = 'finalized' WHERE id = ?");

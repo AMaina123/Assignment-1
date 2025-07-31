@@ -1,9 +1,8 @@
 <?php
-// 🚀 Session & DB
 session_start();
 require 'db.php';
 
-// 🎯 Query all feedback
+//  Query all feedback
 $query = "SELECT full_name, email, subject, message, submitted_at FROM feedback ORDER BY submitted_at DESC";
 $result = $conn->query($query);
 $feedbackList = $result->fetch_all(MYSQLI_ASSOC);
@@ -19,7 +18,7 @@ $feedbackList = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
 
-<!-- 🔗 Navigation Bar -->
+<!--  Navigation Bar -->
 <div class="topnav">
   <a href="Homepage.php">Home</a>
   <a href="Dashboard.php">Dashboard</a>
@@ -35,22 +34,22 @@ $feedbackList = $result->fetch_all(MYSQLI_ASSOC);
   </div>
 </div>
 
-<!-- 📌 Page Title -->
+<!--  Page Title -->
 <div class="header">
   <h1>User Feedback</h1>
 </div>
 
-<!-- 📥 Container -->
+<!--  Container -->
 <div class="container">
   <div class="main-content">
     <h2>Recent Submissions</h2>
 
-    <!-- 📄 Report Download Button -->
+    <!--  Report Download Button -->
     <form method="POST" action="generateFeedbackReport.php" target="_blank" style="margin-bottom: 15px;">
       <button type="submit" class="btn btn-sm btn-secondary">Download Feedback PDF Report</button>
     </form>
 
-    <!-- 🗂️ Feedback Table -->
+    <!--  Feedback Table -->
     <?php if (count($feedbackList) > 0): ?>
     <table class="table table-striped">
       <thead>
@@ -80,7 +79,7 @@ $feedbackList = $result->fetch_all(MYSQLI_ASSOC);
   </div>
 </div>
 
-<!-- 📬 Footer -->
+<!--  Footer -->
 <div class="footer">
   <p>&copy; 2025 LegalGuide. All rights reserved.</p>
 </div>

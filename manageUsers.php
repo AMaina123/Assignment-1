@@ -1,15 +1,15 @@
 <?php
 session_start();
-include 'db.php';
+require 'db.php';
 
-// 🔐 Handle logout
+//  Handle logout
 if (isset($_GET['logout'])) {
   session_destroy();
   header("Location: Homepage.php");
   exit;
 }
 
-// 🔄 Handle role updates
+// Handle role updates
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'updateRole') {
   $userId = $_POST['user_id'];
   $newRole = $_POST['new_role'];
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'updateRole') 
   $stmt->execute();
 }
 
-// ❌ Soft delete user
+// Soft delete user
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'deleteUser') {
   $userId = $_POST['user_id'];
 
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'deleteUser') 
   $stmt->execute();
 }
 
-// 🎯 Role filtering logic
+// Role filtering logic
 $selectedRole = isset($_GET['role_filter']) ? intval($_GET['role_filter']) : 0;
 
 if ($selectedRole > 0) {
@@ -53,7 +53,7 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
 
-  <!-- 🔗 Top Navigation Bar -->
+  <!--  Top Navigation Bar -->
   <div class="topnav">
     <a href="Homepage.php"> Home </a>
     <a href="Dashboard.php"> Dashboard</a>
@@ -69,25 +69,25 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
     </div>
   </div>
 
-  <!-- 📌 Page Header -->
+  <!--  Page Header -->
   <div class="header">
     <h1>Admin Panel — Manage Users</h1>
   </div>
 
   <div class="container">
-    <!-- 📁 Sidebar -->
+    <!--  Sidebar -->
     <div class="sidebar">
       <a href="Dashboard.php"> Dashboard</a><br>
       <a href="Profile.php"> My Profile</a><br>
       <a href="ContactUs.php"> Contact Us</a><br>
     </div>
 
-    <!-- 📊 Main Content -->
+    <!--  Main Content -->
     <div class="main-content">
       <div class="card">
         <h2>User Management</h2>
 
-        <!-- 🎯 Filter by Role -->
+        <!--  Filter by Role -->
         <form method="get" action="manageUsers.php" class="role-filter-form">
           <label for="role_filter"><strong>Filter by Role:</strong></label>
           <select name="role_filter" onchange="this.form.submit()" class="form-control" style="width:auto;">
@@ -148,7 +148,7 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
     </div>
   </div>
 
-  <!-- 📬 Footer -->
+  <!--  Footer -->
   <div class="footer">
     <p>&copy; 2025 LegalGuide. All rights reserved.</p>
     <p>Need help? <a href="mailto:support@legalguide.com">support@legalguide.com</a></p>

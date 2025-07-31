@@ -57,8 +57,6 @@ if (isset($_GET['logout'])) {
     </div>    
     
 </div>
-
-   
     
     <div class="footer">
          <p>&copy; 2025 LegalGuide. All rights reserved.</p>

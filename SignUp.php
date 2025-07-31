@@ -233,6 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <p>Need help? <a href="mailto:support@legalguide.com">support@legalguide.com</a></p>
 </div>
 
+<!--JavaScript to toggle lawyer-specific fields -->
 <script>
 document.getElementById('role_id').addEventListener('change', function () {
   const selectedText = this.options[this.selectedIndex].text;

@@ -2,7 +2,7 @@
 //  Start session and include config/logic
 session_start();
 require "db.php";            // MySQLi connection
-require "config.php";        // API keys & constants
+require "config.php";        // API keys & constants if any
 require "dashconfig.php";    // Universal dashboard logic
 ?>
 
