@@ -1,12 +1,12 @@
 <?php
-// 🔌 Database Connection & Session Start
+//  Database Connection & Session Start
 require 'db.php';
 session_start();
 
-// 📦 Comprehensive Lawyer Dataset Query
+//  Comprehensive Lawyer Dataset Query
 $query = "
   SELECT 
-    u.id, u.full_name, u.email, u.created_at AS user_created_at, -- ✅ Pulling created_at from users
+    u.id, u.full_name, u.email, u.created_at AS user_created_at, --  Pulling created_at from users
     lp.bio, lp.experience, lp.location, lp.expertise, lp.availability_status,
     ld.certificate_number, ld.document_type, ld.uploaded_at,
     COUNT(a.id) AS total_consultations
@@ -23,7 +23,7 @@ WHERE
 GROUP BY 
     u.id, lp.id, ld.id
 ORDER BY 
-    u.created_at DESC -- ✅ Sort by actual account creation time
+    u.created_at DESC --  Sort by actual account creation time
 ";
 
 $result = $conn->query($query);
@@ -33,7 +33,7 @@ $lawyers = $result->fetch_all(MYSQLI_ASSOC);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 🔖 Meta & Styles -->
+  <!--  Meta & Styles -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin | Lawyer Management</title>
@@ -41,7 +41,7 @@ $lawyers = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
 
-  <!-- 🔗 Navigation Bar -->
+  <!--  Navigation Bar -->
   <div class="topnav">
     <a href="Homepage.php">Home</a>
     <a href="Dashboard.php">Dashboard</a>
@@ -57,20 +57,20 @@ $lawyers = $result->fetch_all(MYSQLI_ASSOC);
     </div>
   </div>
 
-  <!-- 📌 Page Header -->
+  <!--  Page Header -->
   <div class="header">
     <h1>Lawyer Management</h1>
   </div>
 
   <div class="container">
-    <!-- 📁 Sidebar -->
+    <!--  Sidebar -->
     <div class="sidebar">
       <a href="Dashboard.php">Dashboard</a><br>
       <a href="Profile.php">My Profile</a><br>
       <a href="ContactUs.php">Contact Us</a><br>
     </div>
 
-    <!-- 📋 Main Lawyer Info -->
+    <!--  Main Lawyer Info -->
     <div class="main-content">
       <div class="card">
         <h2>Registered Lawyers & Profiles</h2>
