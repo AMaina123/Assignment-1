@@ -26,25 +26,96 @@ switch ($reportType) {
     break;
 
   case 'lawyer_management':
-    $query = "SELECT specialization, COUNT(*) AS count FROM lawyers GROUP BY specialization";
-    $result = $conn->query($query);
-    $html .= "<h3>Lawyer Breakdown by Specialization</h3><table border='1' cellpadding='5'><tr><th>Specialization</th><th>Count</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-      $html .= "<tr><td>{$row['specialization']}</td><td>{$row['count']}</td></tr>";
-    }
-    $html .= "</table>";
-    break;
+  $query = "
+    SELECT 
+      u.id, u.full_name, u.email, u.created_at AS user_created_at,
+      lp.bio, lp.experience, lp.location, lp.expertise, lp.availability_status,
+      ld.certificate_number, ld.document_type, ld.uploaded_at,
+      COUNT(a.id) AS total_consultations
+    FROM 
+      users u
+    JOIN 
+      lawyer_profiles lp ON u.id = lp.user_id
+    JOIN 
+      lawyer_documents ld ON u.id = ld.user_id
+    LEFT JOIN 
+      appointments a ON u.id = a.lawyer_id
+    WHERE 
+      u.role_id = 2 AND u.is_deleted = 0
+    GROUP BY 
+      u.id, lp.id, ld.id
+    ORDER BY 
+      u.created_at DESC
+  ";
 
-  case 'user_feedback':
-    $query = "SELECT sentiment, COUNT(*) AS count FROM feedback GROUP BY sentiment";
-    $result = $conn->query($query);
-    $html .= "<h3>User Feedback Overview</h3><table border='1' cellpadding='5'><tr><th>Sentiment</th><th>Count</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-      $html .= "<tr><td>{$row['sentiment']}</td><td>{$row['count']}</td></tr>";
-    }
-    $html .= "</table>";
-    break;
+  $result = $conn->query($query);
+  $html .= "<h3>Registered Lawyers</h3><table border='1' cellpadding='5'>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Experience</th>
+      <th>Location</th>
+      <th>Availability</th>
+      <th>Expertise</th>
+      <th>Bio</th>
+      <th>Cert #</th>
+      <th>Doc Type</th>
+      <th>Doc Upload</th>
+      <th>Consultations</th>
+      <th>Account Created</th>
+    </tr>";
 
+  while ($row = $result->fetch_assoc()) {
+    $html .= "<tr>
+      <td>" . htmlspecialchars($row['full_name']) . "</td>
+      <td>" . htmlspecialchars($row['email']) . "</td>
+      <td>" . htmlspecialchars($row['experience']) . "</td>
+      <td>" . htmlspecialchars($row['location']) . "</td>
+      <td>" . htmlspecialchars(ucfirst($row['availability_status'])) . "</td>
+      <td>" . nl2br(htmlspecialchars($row['expertise'])) . "</td>
+      <td>" . nl2br(htmlspecialchars($row['bio'])) . "</td>
+      <td>" . htmlspecialchars($row['certificate_number']) . "</td>
+      <td>" . htmlspecialchars($row['document_type']) . "</td>
+      <td>" . date("Y-m-d", strtotime($row['uploaded_at'])) . "</td>
+      <td>" . $row['total_consultations'] . "</td>
+      <td>" . date("Y-m-d", strtotime($row['user_created_at'])) . "</td>
+    </tr>";
+  }
+
+  $html .= "</table>";
+  break;
+
+ case 'feedback':
+  $query = "SELECT full_name, email, subject, message, submitted_at FROM feedback ORDER BY submitted_at DESC";
+  $result = $conn->query($query);
+
+  $html .= "<h3>User Feedback Submissions</h3>";
+  $html .= "<table border='1' cellpadding='5'>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Subject</th>
+      <th>Message</th>
+      <th>Submitted</th>
+    </tr>";
+
+  if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $html .= "<tr>
+        <td>" . htmlspecialchars($row['full_name']) . "</td>
+        <td>" . htmlspecialchars($row['email']) . "</td>
+        <td>" . htmlspecialchars($row['subject']) . "</td>
+        <td>" . nl2br(htmlspecialchars($row['message'])) . "</td>
+        <td>" . date("Y-m-d H:i", strtotime($row['submitted_at'])) . "</td>
+      </tr>";
+    }
+  } else {
+    $html .= "<tr><td colspan='5'>No feedback submissions found.</td></tr>";
+  }
+
+  $html .= "</table>";
+  break;
+  
   case 'system_analytics':
     // Mirror dashboard logic: total users, legal queries, consultations
     $userCount = $conn->query("SELECT COUNT(*) AS count FROM users")->fetch_assoc()['count'];

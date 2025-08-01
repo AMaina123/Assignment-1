@@ -75,9 +75,9 @@ $lawyers = $result->fetch_all(MYSQLI_ASSOC);
       <div class="card">
         <h2>Registered Lawyers & Profiles</h2>
 
-        <!--  PDF Report Button -->
-        <form method="post" action="generateReport.php" target="_blank" style="margin-bottom: 15px;">
-          <button type="submit" class="btn btn-sm btn-secondary">Download Lawyer PDF Report</button>
+        <!--  Report Download Button -->
+        <form action="generateReport.php?report_type=lawyer_management" method="post" target="_blank" style="margin-bottom: 15px;">
+          <button type="submit" class="btn btn-sm btn-secondary">Download PDF Report</button>
         </form>
 
         <!--  Lawyer Table -->

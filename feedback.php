@@ -44,10 +44,11 @@ $feedbackList = $result->fetch_all(MYSQLI_ASSOC);
   <div class="main-content">
     <h2>Recent Submissions</h2>
 
-    <!--  Report Download Button -->
-    <form method="POST" action="generateFeedbackReport.php" target="_blank" style="margin-bottom: 15px;">
-      <button type="submit" class="btn btn-sm btn-secondary">Download Feedback PDF Report</button>
-    </form>
+     <!--  Report Download Button -->
+        <form action="generateReport.php?report_type=feedback" method="post" target="_blank" style="margin-bottom: 15px;">
+          <button type="submit" class="btn btn-sm btn-secondary">Download PDF Report</button>
+        </form>
+
 
     <!--  Feedback Table -->
     <?php if (count($feedbackList) > 0): ?>
