@@ -52,6 +52,7 @@ $apptCount = $conn->query("SELECT COUNT(*) AS count FROM appointments")->fetch_a
       <div class="card">
         <h2>Platform Usage Summary</h2>
 
+        <!--  Report Download Button -->
         <form action="generateReport.php?report_type=system_analytics" method="post" target="_blank" style="margin-bottom: 15px;">
           <button type="submit" class="btn btn-sm btn-secondary">Download PDF Report</button>
         </form>
