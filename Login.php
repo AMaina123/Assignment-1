@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <?php endif; ?>
           
           <p><a href="SignUp.php">Don't have an account? Sign Up</a></p>
-          <p><a href="forgotpassword.php">Forgot your password?</a></p>
+          <p><a href="forgotPassword.php">Forgot your password?</a></p>
           </form>
 
         </div>

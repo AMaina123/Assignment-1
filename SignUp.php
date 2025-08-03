@@ -241,5 +241,6 @@ document.getElementById('role_id').addEventListener('change', function () {
   lawyerFields.style.display = (selectedText === 'Lawyer') ? 'block' : 'none';
 });
 </script>
+
 </body>
 </html>
