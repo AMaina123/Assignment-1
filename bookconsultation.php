@@ -116,14 +116,18 @@ $stmt->close();
     <!--  Filtering Form -->
     <form method="POST" action="bookconsultation.php" class="second-content">
       <label for="location">Location:</label>
+      <br>
       <select name="location" onchange="this.form.submit()">
         <option value="">-- Select Location --</option>
         <option value="Nairobi"  <?= $location === 'Nairobi' ? 'selected' : '' ?>>Nairobi</option>
         <option value="Mombasa"  <?= $location === 'Mombasa' ? 'selected' : '' ?>>Mombasa</option>
         <option value="Kisumu"   <?= $location === 'Kisumu'  ? 'selected' : '' ?>>Kisumu</option>
       </select>
+       </form>
 
+       <form method="POST" action="bookconsultation.php" class="second-content">
       <label for="expertise">Expertise Area:</label>
+      <br>
       <select name="expertise" onchange="this.form.submit()">
         <option value="">-- Select Expertise --</option>
         <?php
@@ -146,24 +150,36 @@ $stmt->close();
           }
         ?>
       </select>
-    </form>
+        </form>
+   
 
-    <!-- 📝 Consultation Form -->
+    <!--  Consultation Form -->
     <form method="POST" action="bookconsultation.php" class="second-content">
       <?php if (!empty($booking_message)): ?>
         <p style="color: green; text-align: center;"><?php echo $booking_message; ?></p>
       <?php endif; ?>
 
+      <form method="POST" action="bookconsultation.php" class="second-content">
       <label for="purpose">Purpose:</label>
+      <br>
       <textarea name="purpose" rows="4" placeholder="Describe your legal issue..." required></textarea>
+      </form>
 
+      <form method="POST" action="bookconsultation.php" class="second-content">
       <label for="date">Date:</label>
+      <br>
       <input type="date" name="date" required />
+      </form>
 
+      <form method="POST" action="bookconsultation.php" class="second-content">
       <label for="time">Time:</label>
+      <br>
       <input type="time" name="time" required />
+      </form>
 
+      <form method="POST" action="bookconsultation.php" class="second-content">
       <label for="lawyer">Select Advocate:</label>
+      <br>
       <select name="lawyer_id" required>
         <?php if ($result && $result->num_rows > 0): ?>
           <?php while ($row = $result->fetch_assoc()): ?>
@@ -173,12 +189,13 @@ $stmt->close();
           <option value="">No lawyers found for selected filters</option>
         <?php endif; ?>
       </select>
+        </form>
 
       <button type="submit">Book Consultation</button>
     </form>
   </div>
 
-  <!-- 📌 Sidebar -->
+  <!--  Sidebar -->
   <aside class="sidebar">
     <a href="Dashboard.php">Dashboard</a>
     <a href="MyHobbies.php">My Hobbies</a>
@@ -187,7 +204,7 @@ $stmt->close();
   </aside>
 </div>
 
-<!-- 📎 Footer -->
+<!-- Footer -->
 <div class="footer">
   <p>&copy; 2025 LegalGuide. All rights reserved.</p>
   <p>Need help? <a href="mailto:support@legalguide.com">support@legalguide.com</a></p>
