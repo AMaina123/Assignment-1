@@ -1,7 +1,6 @@
 <!--  Submit Legal Query -->
 <section class="second-content">
-  <h2>Submit a Legal Query</h2> 
-  <br>
+  <h2>Submit a Legal Query</h2>  
   <form method="post" action="">
     <textarea name="query_text" rows="6" placeholder="Describe your legal issue clearly..." required></textarea>
     <br><input type="submit" value="Submit Query" />
@@ -64,7 +63,6 @@
       </tbody>
     </table>
   <?php else: ?>
-    <br>
     <p>No legal queries submitted yet.</p>
   <?php endif; ?>
   </div>
@@ -74,20 +72,13 @@
 <!-- Consultation Access -->
 <section class="second-content">
   <h2>Book a Legal Consultation</h2>
-  <break>
-  <div class="second-content"> 
   <p>Choose LSK-verified lawyers by location and expertise.</p>
-  <br>
-  <a href="bookconsultation.php" class="btn"><p>Get Started</p>
-    </a>
-  </div>
+  <a href="bookconsultation.php" class="btn"><p>Get Started</p> </a>
 </section>
 
 <!--  Scheduled Consultations -->
 <section class="second-content">
   <h2>Your Scheduled Consultations</h2> 
-  <br>
-  <div class="second-content">
   <?php if (!empty($user_appts)): ?>
   <table class="consultation-table">
     <thead>
@@ -112,7 +103,6 @@
 <?php else: ?>
   <p>No upcoming consultations booked.</p>
 <?php endif; ?>
-</div>
 </section>
 
 <!--  User Tips -->

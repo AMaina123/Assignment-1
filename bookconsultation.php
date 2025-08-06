@@ -191,6 +191,7 @@ $stmt->close();
       </select>
         </form>
 
+        <br>
       <button type="submit">Book Consultation</button>
     </form>
   </div>
