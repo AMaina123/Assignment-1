@@ -39,7 +39,7 @@ require "dashconfig.php";    // Universal dashboard logic
   <!--  Main Content Container -->
   <div class="container">
     <div class="main-content">
-      <h2>Your Activity</h2>
+      <h2><u>Your Activity</u></h2>
 
       <!-- Render Section Based on Role -->
       <?php

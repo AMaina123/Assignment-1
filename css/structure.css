@@ -80,7 +80,6 @@ html, body {
 }
   
 .second-content {
-  display: flex;
   gap: 20px;
   background-color: #ffffff;
   border: 1px solid #dee2e6;

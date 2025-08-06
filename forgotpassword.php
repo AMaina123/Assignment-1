@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 $conn = new mysqli("localhost", "root", "Menerator.1", "legalguide2");
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
+session_start(); // Include session for nav bar logic
+
 $feedback_message = '';
 $feedback_type = '';
 
@@ -26,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 
         $reset_link = "http://localhost/forgotpassword.php?token=$token";
 
-        // TEMP MAIL FUNCTION: Replace with PHPMailer later
         $subject = "LegalGuide Password Reset";
         $message = "Click this link to reset your password:\n$reset_link";
         $headers = "From: legalguide@example.com";
@@ -100,41 +101,89 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['token']) && isset($_P
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Forgot Password</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 30px; background-color: #f5f5f5; }
-        .form-container { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; }
-        .feedback { padding: 10px; border-radius: 5px; margin-bottom: 10px; }
-        .success { background-color: #d4edda; color: #155724; }
-        .error { background-color: #f8d7da; color: #721c24; }
-        input, button { width: 100%; padding: 10px; margin-top: 10px; }
-        a.btn { display: block; padding: 10px; text-align: center; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-top: 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LegalGuide | Forgot Password</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .form-card {
+        align-items: center;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 500px;
+        margin: auto;
+    }
+    .feedback { padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+    .success { background-color: #d4edda; color: #155724; }
+    .error { background-color: #f8d7da; color: #721c24; }
+    input, button { width: 100%; padding: 10px; margin-top: 10px; }
+  </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Forgot Password</h2>
+
+  <!--  Navigation Bar -->
+  <div class="topnav">
+    <a href="Homepage.php">Home</a>
+    <a href="Dashboard.php">Dashboard</a>
+    <a href="ContactUs.php">Contact Us</a>
+    <div class="topnav-right">
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <a href="Profile.php">My Profile</a>
+        <a href="Homepage.php?logout=true" style="color: #dc3545;">Logout</a>
+      <?php else: ?>
+        <a href="SignUp.php">Sign Up</a>
+        <a href="Login.php">Login</a>
+      <?php endif; ?>
+    </div>
+  </div>
+
+  <!--  Page Header -->
+  <div class="header">
+    <h1>Reset Your Password</h1>
+  </div>
+
+  <div class="container">
+    <!--  Sidebar -->
+    <div class="sidebar">
+      <a href="Dashboard.php">Dashboard</a><br>
+      <a href="Profile.php">My Profile</a><br>
+      <a href="ContactUs.php">Contact Us</a><br>
+    </div>
+
+    <!--  Main Content -->
+    <div class="main-content" style="padding: 20px;">
+      <div class="form-card">
+        <h2>Enter your email</h2>
 
         <?php if (!empty($feedback_message)): ?>
-            <div class="feedback <?= $feedback_type ?>">
-                <?= htmlspecialchars($feedback_message) ?>
-            </div>
+          <div class="feedback <?= $feedback_type ?>">
+            <?= htmlspecialchars($feedback_message) ?>
+          </div>
         <?php endif; ?>
 
         <?php if (isset($show_password_form) && $show_password_form): ?>
-            <form method="POST" action="">
-                <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
-                <input type="password" name="new_password" placeholder="Enter new password" required>
-                <button type="submit">Reset Password</button>
-            </form>
+          <form method="POST" action="">
+            <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+            <input type="password" name="new_password" placeholder="Enter new password" required>
+            <button type="submit">Reset Password</button>
+          </form>
         <?php else: ?>
-            <form method="POST" action="">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Send Reset Link</button>
-            </form>
+          <form method="POST" action="">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Send Reset Link</button>
+          </form>
         <?php endif; ?>
+      </div>
     </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 LegalGuide. All rights reserved.</p>
+    <p>Need help? <a href="mailto:support@legalguide.com">support@legalguide.com</a></p>
+  </div>
 </body>
-</html>     
+</html>

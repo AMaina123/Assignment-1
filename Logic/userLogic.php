@@ -74,10 +74,12 @@
 <!-- Consultation Access -->
 <section class="second-content">
   <h2>Book a Legal Consultation</h2>
+  <break>
   <div class="second-content"> 
   <p>Choose LSK-verified lawyers by location and expertise.</p>
   <br>
-  <a href="bookconsultation.php" class="btn">Get Started</a>
+  <a href="bookconsultation.php" class="btn"><p>Get Started</p>
+    </a>
   </div>
 </section>
 
@@ -85,6 +87,7 @@
 <section class="second-content">
   <h2>Your Scheduled Consultations</h2> 
   <br>
+  <div class="second-content">
   <?php if (!empty($user_appts)): ?>
   <table class="consultation-table">
     <thead>
@@ -109,6 +112,7 @@
 <?php else: ?>
   <p>No upcoming consultations booked.</p>
 <?php endif; ?>
+</div>
 </section>
 
 <!--  User Tips -->
